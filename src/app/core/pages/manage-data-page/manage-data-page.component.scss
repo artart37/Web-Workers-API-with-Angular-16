@@ -1,0 +1,13 @@
+:host {
+  display: block;
+  .data {
+    &__options {
+      display: flex;
+      column-gap: 5px;
+      justify-content: space-between;
+    }
+    &__options {
+      margin: 10px 0;
+    }
+  }
+}

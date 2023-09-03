@@ -1,0 +1,45 @@
+<ng-container *ngIf="{ tableData: tableData$ | async } as data">
+  <div class="data">
+    <header>
+      <h1>Manage Data</h1>
+      <section [formGroup]="optionsFormGroup" class="data__options">
+        <ft-options-input
+          formControlName="timer"
+          label="Timer, ms"
+          placeholder="Timer, ms"
+          type="number"
+          [min]="1"
+          (valueChanges)="onTimerChange($event)"
+        ></ft-options-input>
+        <ft-options-input
+          formControlName="totalItems"
+          label="Array size"
+          placeholder="Array size"
+          type="number"
+          [value]="data.tableData?.length"
+        ></ft-options-input>
+        <ft-options-input
+          formControlName="size"
+          label="Take last"
+          placeholder="Number of last items to display"
+          type="number"
+          [min]="1"
+          (valueChanges)="onSizeChange($event)"
+        ></ft-options-input>
+        <ft-options-input
+          formControlName="additionalId"
+          label="Additional array ids"
+          placeholder="Comma separated array ids"
+          type="text"
+          [debounceTime]="400"
+          (valueChanges)="onAdditionalIdChange($event)"
+        ></ft-options-input>
+      </section>
+    </header>
+    <ft-data-table
+      [tableColumns]="tableColumns"
+      [tableChildColumns]="tableChildColumns"
+      [tableData]="data.tableData?.data"
+    ></ft-data-table>
+  </div>
+</ng-container>

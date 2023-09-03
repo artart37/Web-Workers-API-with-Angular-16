@@ -1,0 +1,40 @@
+:host {
+  display: block;
+  .data-table {
+    display: flex;
+    flex-direction: column;
+    border: 1px solid #ddd;
+
+    &__header-row {
+      display: flex;
+      font-weight: bold;
+    }
+
+    &__header-cell,
+    &__data-cell {
+      padding: 8px;
+      flex: 1 1 25%;
+    }
+
+    &__data-row {
+      display: flex;
+      border-bottom: 1px solid #ddd;
+    }
+
+    &__data-cell {
+      &.sub {
+        border: 1px solid #ddd;
+        margin: 5px;
+        .data-table {
+          &__data-row {
+            border: none;
+            span {
+              padding: 8px;
+              flex: 1 1 50%;
+            }
+          }
+        }
+      }
+    }
+  }
+}

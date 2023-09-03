@@ -1,0 +1,10 @@
+@use "../../styles/components/forms";
+
+:host {
+  display: flex;
+  flex-direction: column;
+  row-gap: 5px;
+  .error-section {
+    margin: 2px;
+  }
+}

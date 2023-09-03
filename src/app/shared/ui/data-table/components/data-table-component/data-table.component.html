@@ -1,0 +1,66 @@
+<div class="data-table">
+  <div class="data-table__header-row main">
+    <ng-container
+      [ngTemplateOutlet]="headerRowTemplate"
+      [ngTemplateOutletContext]="{ $implicit: tableColumns }"
+    ></ng-container>
+  </div>
+  <div
+    class="data-table__data-row"
+    *ngFor="let row of tableData; trackBy: trackById"
+  >
+    <ng-container
+      [ngTemplateOutlet]="dataRowTemplate"
+      [ngTemplateOutletContext]="{ $implicit: row }"
+    ></ng-container>
+  </div>
+</div>
+
+<ng-template #headerRowTemplate let-columns>
+  <section
+    class="data-table__header-cell"
+    *ngFor="let column of columns; trackBy: trackById"
+  >
+    {{ column }}
+  </section>
+</ng-template>
+
+<ng-template #dataRowTemplate let-row>
+  <section
+    [class.sub]="column === 'child'"
+    class="data-table__data-cell"
+    *ngFor="let column of tableColumns"
+  >
+    <span
+      *ngIf="column !== 'child'"
+      [style.background-color]="
+        column === 'color' ? row[column] : 'transparent'
+      "
+      >{{ row[column] }}</span
+    >
+    <ng-container
+      *ngIf="column === 'child'"
+      [ngTemplateOutlet]="childTemplate"
+      [ngTemplateOutletContext]="{ $implicit: row[column] }"
+    ></ng-container>
+  </section>
+</ng-template>
+
+<ng-template #childTemplate let-child>
+  <section class="data-table__header-row">
+    <ng-container
+      [ngTemplateOutlet]="headerRowTemplate"
+      [ngTemplateOutletContext]="{ $implicit: tableChildColumns }"
+    ></ng-container>
+  </section>
+  <section class="data-table__data-row">
+    <ng-container *ngFor="let column of tableChildColumns">
+      <span
+        [style.background-color]="
+          column === 'color' ? child[column] : 'transparent'
+        "
+        >{{ child[column] }}</span
+      >
+    </ng-container>
+  </section>
+</ng-template>

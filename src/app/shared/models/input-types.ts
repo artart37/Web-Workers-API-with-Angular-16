@@ -1,0 +1,16 @@
+export type InputTypes =
+  | 'text'
+  | 'number'
+  | 'email'
+  | 'password'
+  | 'checkbox'
+  | 'radio'
+  | 'date'
+  | 'time'
+  | 'file'
+  | 'range'
+  | 'color'
+  | 'submit'
+  | 'reset'
+  | 'button'
+  | 'hidden';
